@@ -10,11 +10,12 @@ import (
 )
 
 func main() {
-	fmt.Printf("You entered grade is: %s", passGrade())
-	fmt.Printf("The size of the file is: %d bytes\n", fileSize("main.go"))
+	grade, status := passGrade()
+	fmt.Printf("A grade of %v is %s\n", grade, status)
+	// fmt.Printf("The size of the file is: %d bytes\n", fileSize("main.go"))
 }
 
-func passGrade() string {
+func passGrade() (float64, string) {
 	var status string
 	level := 60
 
@@ -39,13 +40,13 @@ func passGrade() string {
 		status = "failing"
 	}
 
-	return status
+	return grade, status
 }
 
-func fileSize(fileName string) int64 {
-	fileInfo, err := os.Stat(fileName)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return fileInfo.Size()
-}
+// func fileSize(fileName string) int64 {
+// 	fileInfo, err := os.Stat(fileName)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	return fileInfo.Size()
+// }
